@@ -1,4 +1,5 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
@@ -28,7 +29,7 @@ const Signup = () => {
       .post(`${server}/user/create-user`, newForm, config)
       .then((res) => {
          if (res.data.success === true) {
-          navigate("/"); 
+     
          }
       })
       .catch((err) => {
