@@ -47,7 +47,7 @@ const sendMail = require("../utils/sendMail");
 
 
         } catch (err) {
-
+            return next(new ErrorHandler(err.message, 500));
         }
 
 
