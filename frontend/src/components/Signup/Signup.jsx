@@ -29,7 +29,7 @@ const Signup = () => {
       .post(`${server}/user/create-user`, newForm, config)
       .then((res) => {
          if (res.data.success === true) {
-     
+          alert(res.message)
          }
       })
       .catch((err) => {
