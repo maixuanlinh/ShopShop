@@ -6,12 +6,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { BiMenuAltLeft } from "react-icons/bi";
 import DropDown from "./DropDown.jsx";
+import Navbar from "./Navbar.jsx";
 
-const Header = () => {
+const Header = ({activeHeading}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
+ 
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -122,6 +124,12 @@ const Header = () => {
                 }
 
             </div>
+          </div>
+
+          {/* navitems */}
+          <div className={`${styles.normalFlex}`}>
+            <Navbar active={activeHeading} />
+
           </div>
         </div>
       </div>
