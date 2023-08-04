@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { server } from "../../server";
+import { toast } from "react-toastify"
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -25,16 +26,29 @@ const Signup = () => {
     newForm.append("email", email);
     newForm.append("password", password);
 
-    axios
-      .post(`${server}/user/create-user`, newForm, config)
-      .then((res) => {
-         if (res.data.success === true) {
-          alert(res.message)
-         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+axios
+  .post(`${server}/user/create-user`, newForm, config)
+  .then((res) => {
+    console.log("success");
+    toast.success(res.data.message);
+  })
+  .catch((err) => {
+    // check if err.response exists before trying to access err.response.data
+    if (err.response) {
+      console.log(err.response.data);
+      toast.error(err.response.data.message);
+    } else if (err.request) {
+      // The request was made but no response was received
+      console.log(err.request);
+      toast.error("The request was made, but no response was received");
+    } else {
+      // Something happened in setting up the request and triggered an Error
+      console.log("Error", err.message);
+      toast.error("An error occurred while setting up the request");
+    }
+    console.log(err.config);
+  });
+
   };
 
   const handleFileInputChange = (e) => {
