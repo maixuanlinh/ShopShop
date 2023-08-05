@@ -81,7 +81,7 @@ const ProductCard = ({ data }) => {
         <div>
           {click ? (
             <AiFillHeart
-              size={22}
+              size={30}
               className="cursor-pointer absolute right-2 top-5"
               onClick={() => setClick(!click)}
               color={click ? "red" : "#333"}
@@ -89,7 +89,7 @@ const ProductCard = ({ data }) => {
             />
           ) : (
             <AiOutlineHeart
-              size={22}
+              size={30}
               className="cursor-pointer absolute right-2 top-5"
               onClick={() => setClick(!click)}
               color={click ? "red" : "#333"}
@@ -98,7 +98,7 @@ const ProductCard = ({ data }) => {
           )}
 
           <AiOutlineEye
-            size={22}
+            size={30}
             className="cursor-pointer absolute right-2 top-14"
             onClick={() => setOpen(!open)}
             color="#333"
@@ -106,7 +106,7 @@ const ProductCard = ({ data }) => {
           />
 
           <AiOutlineShoppingCart
-            size={25}
+            size={30}
             className="cursor-pointer absolute right-2 top-24"
             onClick={() => setOpen(!open)}
             color="#333"
