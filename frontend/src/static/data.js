@@ -427,7 +427,7 @@ export const productData = [
       },
       {
         public_id: "test",
-        url: "https://eratablet.com/wp-content/uploads/2022/08/H51ba6537405f4948972e293927673546u.jpg",
+        url: "https://5.imimg.com/data5/RW/MU/MY-11744116/gaming-headset-asus-cerberus-v2-red-500x500.png",
       },
     ],
     shop: {
