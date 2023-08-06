@@ -3,9 +3,9 @@ import styles from '../../styles/styles';
 
 import Countdown from "./Countdown.jsx";
 
-const EventCard = () => {
+const EventCard = ({active}) => {
   return (
-    <div className={`w-full block bg-white rounded-lg lg:flex p-2 mb-12`}>
+    <div className={`w-full block bg-white rounded-lg lg:flex p-2 mb-12 ${active ? "unset" : "mb-12"}`}>
       <div className="w-full lg:-w[50%] m-auto">
         <img src="https://m.media-amazon.com/images/I/31Vle5fVdaL.jpg" alt="" />
       </div>
