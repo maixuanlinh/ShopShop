@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {BrowserRouter, Routes, Route } from "react-router-dom";
 import {LoginPage, SignupPage, ActivationPage, HomePage, ProductPage, BestSellingPage, EventsPage, FAQPage, 
-ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage
+ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage, ProfilePage
 } from "./Routes.js";
 import './App.css';
 import { ToastContainer } from "react-toastify";
@@ -38,6 +38,7 @@ const App = () => {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/order/success/:d" element={<OrderSuccessPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <ToastContainer
         position="bottom-center"

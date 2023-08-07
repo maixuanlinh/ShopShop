@@ -10,8 +10,10 @@ import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
 import OrderSuccessPage from "./pages/OrderSuccessPage.jsx";
 import PaymentPage from "./pages/PaymentPage.jsx"
+import ProfilePage from "./pages/ProfilePage.jsx"
 
 
 export {
-    LoginPage, SignupPage, ActivationPage, HomePage, ProductPage, BestSellingPage, EventsPage, FAQPage, ProductDetailsPage, CheckoutPage, PaymentPage, OrderSuccessPage
+    LoginPage, SignupPage, ActivationPage, HomePage, ProductPage, BestSellingPage, EventsPage, FAQPage, ProductDetailsPage, CheckoutPage, PaymentPage, 
+    OrderSuccessPage, ProfilePage
 };
