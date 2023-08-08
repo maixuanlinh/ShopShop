@@ -170,6 +170,13 @@ const ProfileContent = ({ active }) => {
           <PaymentMethod />
         </div>
       )}
+
+      {/* address */}
+      {active === 7 && (
+        <div>
+          <Address />
+        </div>
+      )}
     </div>
   );
 };
@@ -443,7 +450,7 @@ const TrackOrder = () => {
         />
       </div>
     );
-}
+} 
 
 const PaymentMethod = () => {
   return (
@@ -463,13 +470,13 @@ const PaymentMethod = () => {
             src="https://bonik-react.vercel.app/assets/images/payment-methods/Visa.svg"
             alt=""
           />
-          <h5 className="pl-5 font-[600] text-[12px] 800px:text-[unset]">
+          <h5 className="pl-5 font-[600] text-[15px] 800px:text-[unset]">
             Linh Mai
           </h5>
         </div>
         <div className="pl-8 flex items-center">
-          <h6 className="text-[12px] 800px:text-[unset]">1234 **** *** ****</h6>
-          <h5 className="pl-6 text-[12px] 800px:text-[unset]">08/2022</h5>
+          <h6 className="text-[15px] 800px:text-[unset]">1234 **** *** ****</h6>
+          <h5 className="pl-6 text-[15px] 800px:text-[unset]">08/2022</h5>
         </div>
         <div className="min-w-[10%] flex items-center justify-between pl-8">
           <AiOutlineDelete size={25} className="cursor-pointer" />
@@ -478,6 +485,45 @@ const PaymentMethod = () => {
     </div>
   );
 };
+
+
+const Address = () => {
+  return (
+    <div className="w-full px-5">
+      <div className="flex w-full items-center justify-between">
+        <h1 className="text-[25px] font-[600] text-[#000000ba] pb-2">
+         Address
+        </h1>
+        <div className={`${styles.button} !rounded-md`}>
+          <span className="text-[#fff]">Add New</span>
+        </div>
+      </div>
+      <br />
+      <div className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10">
+        <div className="flex items-center">
+          <h5 className="pl-5 font-[600] text-[15px] 800px:text-[unset]">
+            Default
+          </h5>
+        </div>
+        <div className="pl-8 flex items-center">
+          <h6 className="text-[15px] 800px:text-[unset]">
+            Isosaarentie 2 Helsinki
+          </h6>
+        </div>
+
+        <div className="pl-8 flex items-center">
+          <h6 className="text-[15px] 800px:text-[unset]">
+           358-444-923-993
+          </h6>
+        </div>
+        <div className="min-w-[10%] flex items-center justify-between pl-8">
+          <AiOutlineDelete size={25} className="cursor-pointer" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 
 export default ProfileContent;
