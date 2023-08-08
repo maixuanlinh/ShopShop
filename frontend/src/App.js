@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {BrowserRouter, Routes, Route } from "react-router-dom";
 import {LoginPage, SignupPage, ActivationPage, HomePage, ProductPage, BestSellingPage, EventsPage, FAQPage, 
-ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage, ProfilePage
+ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage, ProfilePage, ShopCreatePage
 } from "./Routes.js";
 import './App.css';
 import { ToastContainer } from "react-toastify";
@@ -56,6 +56,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/shop-create" element={<ShopCreatePage />} />
       </Routes>
       <ToastContainer
         position="bottom-center"
