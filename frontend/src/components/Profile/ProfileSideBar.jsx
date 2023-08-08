@@ -14,10 +14,11 @@ const ProfileSideBar = ({ setActive, active }) => {
   const logoutHandle = () => {
     axios.get(`${server}/user/logout`, {withCredentials: true}).then((res) => {
         toast.success(res.data.message);
-                window.logcation.reload(true);
+                window.location.reload(true);
         navigate("/login");
 
     }).catch((error) => {
+     
         console.log(error.response.data.message);
     })
   }

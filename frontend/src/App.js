@@ -37,13 +37,25 @@ const App = () => {
 
         <Route path="/events" element={<EventsPage />} />
         <Route path="/faq" element={<FAQPage />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/order/success/:d" element={<OrderSuccessPage />} />
-        <Route path="/profile" element={<ProtectedRoute isAuthenticated={isAuthenticated}>
-        <ProfilePage/>
-        </ProtectedRoute>} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <ToastContainer
         position="bottom-center"
