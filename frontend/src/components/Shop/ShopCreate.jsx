@@ -31,6 +31,7 @@ const ShopCreate = () => {
     newForm.append("zipCode", zipCode);
     newForm.append("address", address);
     newForm.append("phoneNumber", phoneNumber);
+
     axios
       .post(`${server}/shop/create-shop`, newForm, config)
       .then((res) => {

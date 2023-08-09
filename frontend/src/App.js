@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {BrowserRouter, Routes, Route } from "react-router-dom";
 import {LoginPage, SignupPage, ActivationPage, HomePage, ProductPage, BestSellingPage, EventsPage, FAQPage, 
-ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage, ProfilePage, ShopCreatePage
+ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage, ProfilePage, ShopCreatePage, SellerActivationPage
 } from "./Routes.js";
 import './App.css';
 import { ToastContainer } from "react-toastify";
@@ -30,6 +30,10 @@ const App = () => {
         <Route
           path="/activation/:activation_token"
           element={<ActivationPage />}
+        />
+        <Route
+          path="/shop/activation/:activation_token"
+          element={<SellerActivationPage />}
         />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product/:name" element={<ProductDetailsPage />} />
