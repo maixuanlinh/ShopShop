@@ -6,10 +6,11 @@ const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken.js");
-const { isAuthenticated } = require("../middleware/auth"); 
+const { isAuthenticated, isShopAuthenticated } = require("../middleware/auth"); 
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ErrorHandler = require("../utils/ErrorHandler");
 const Shop = require("../model/shop");
+const sendShopToken = require("../utils/shopToken");
 
 router.post("/create-shop", upload.single("file"), async(req, res, next) => {
     try {
@@ -113,12 +114,58 @@ router.post(
 
       console.log("Created seller:", seller);
 
-      sendToken(seller, 201, res);
+      sendShopToken(seller, 201, res);
     } catch (error) {
       console.log("An error occurred:", error.message);
       return next(new ErrorHandler(error.message, 500));
     }
   })
 );
+
+// log in shop
+router.post("/login-shop", catchAsyncErrors(async(req, res, next) => {
+  try {
+    const {email, password} = req.body;
+    if (!email || !password) {
+      return next (new ErrorHandler("Please provide all the fields", 400));
+    }
+    const shop = await Shop.findOne({email}).select("+password");
+
+    if (!shop) {
+      return next (new ErrorHandler("Shop does not exists!", 400));
+
+    }
+
+    const isPasswordValid = await shop.comparePassword(password);
+
+    if (!isPasswordValid) {
+      return next(new ErrorHandler("Please provide the correct information", 400));
+    }
+
+    sendShopToken(shop, 201, res);
+
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+
+}))
+
+//load shop
+router.get("/getShop", isShopAuthenticated, catchAsyncErrors(async (req, res, next) => {
+  try {
+    console.log(req.shop)
+      const shop = await Shop.findById(req.shop.id);
+      if (!shop) {
+        return next(new ErrorHandler("User doesn't exist", 400));
+      }
+
+      res.status(200).json({
+        success: true,
+        shop,
+      })
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+}))
 
 module.exports = router;

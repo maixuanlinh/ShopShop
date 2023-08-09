@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import {BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import {LoginPage, SignupPage, ActivationPage, HomePage, ProductPage, BestSellingPage, EventsPage, FAQPage, 
-ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage, ProfilePage, ShopCreatePage, SellerActivationPage
+ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage, ProfilePage, ShopCreatePage, SellerActivationPage,
+ShopLoginPage, 
 } from "./Routes.js";
 import './App.css';
 import { ToastContainer } from "react-toastify";
@@ -9,18 +10,26 @@ import "react-toastify/dist/ReactToastify.css";
 
 import {toast} from "react-toastify";
 import Store from "./redux/store";
-import {loadUser} from "./redux/actions/userActions.js"
+import {loadShop, loadUser} from "./redux/actions/userActions.js"
 import ProtectedRoute from './ProtectedRoute.js';
 import { useSelector } from "react-redux";
-
+import {ShopHomePage} from "./ShopRoutes.js"
+import ShopProtectedRoute from './ShopProtectedRoute.js';
 
 
 const App = () => {
   const {loading, isAuthenticated} = useSelector((state) => state.user);
+  const { isShopLoading, isShopAuthenticated, shop } = useSelector((state) => state.shop)
+
 
   useEffect(() => {
     Store.dispatch(loadUser());
+    Store.dispatch(loadShop());
+  
+     
   }, [])
+
+
   return (
     <BrowserRouter>
       <Routes>
@@ -31,10 +40,24 @@ const App = () => {
           path="/activation/:activation_token"
           element={<ActivationPage />}
         />
+
         <Route
           path="/shop/activation/:activation_token"
           element={<SellerActivationPage />}
         />
+        <Route path="/shop-login" element={<ShopLoginPage />} />
+
+        <Route
+          path="/shop/:id"
+          element={
+            <ShopProtectedRoute isShopAuthenticated={isShopAuthenticated}>
+              <ShopHomePage />
+            </ShopProtectedRoute>
+          }
+        />
+
+        <Route path="/shop-create" element={<ShopCreatePage />} />
+     
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product/:name" element={<ProductDetailsPage />} />
         <Route path="best-selling" element={<BestSellingPage />} />
@@ -60,8 +83,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
-        <Route path="/shop-create" element={<ShopCreatePage />} />
       </Routes>
       <ToastContainer
         position="bottom-center"
