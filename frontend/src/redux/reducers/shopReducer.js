@@ -10,7 +10,7 @@ export const shopReducer = createReducer(initialState, {
   },
   LoadShopSuccess: (state, action) => {
     state.isShopAuthenticated = true;
-    state.shopLoading = true;
+    state.shopLoading = false;
     state.shop = action.payload;
   },
   LoadShopFail: (state, action) => {
