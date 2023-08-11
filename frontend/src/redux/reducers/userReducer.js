@@ -16,7 +16,7 @@ export const userReducer = createReducer(initialState, {
     LoadUserFail: (state, action) => {
         state.isAuthenticated = false;
         state.loading = false;
-        state.error = action.playload;
+        state.error = action.payload;
     },
     clearErrors: (state) => {
         state.error = null;

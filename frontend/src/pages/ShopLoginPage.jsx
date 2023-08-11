@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 const ShopLoginPage = () => {
 
-     const { isShopAuthenticated, shop } = useSelector((state) => state.shop);
+     const { isShopAuthenticated, shop} = useSelector((state) => state.shop);
      const navigate = useNavigate();
 
      useEffect(() => {
         
        if (isShopAuthenticated === true) {
-         navigate(`/shop/${shop._id}`);
+         navigate(`/dashboard`);
        }
      }, [isShopAuthenticated]);
      

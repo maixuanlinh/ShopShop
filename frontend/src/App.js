@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route, useNavigate, Navigate } from "react-router
 import {LoginPage, SignupPage, ActivationPage, HomePage, ProductPage, BestSellingPage, EventsPage, FAQPage, 
 ProductDetailsPage, PaymentPage, OrderSuccessPage, CheckoutPage, ProfilePage, ShopCreatePage, SellerActivationPage,
 ShopLoginPage, 
-} from "./Routes.js";
+} from "./routes/Routes.js";
 import './App.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,15 +11,15 @@ import "react-toastify/dist/ReactToastify.css";
 import {toast} from "react-toastify";
 import Store from "./redux/store";
 import {loadShop, loadUser} from "./redux/actions/userActions.js"
-import ProtectedRoute from './ProtectedRoute.js';
+import ProtectedRoute from './routes/ProtectedRoute.js';
 import { useSelector } from "react-redux";
-import {ShopHomePage} from "./ShopRoutes.js"
-import ShopProtectedRoute from './ShopProtectedRoute.js';
+import {ShopHomePage, ShopDashboardPage} from "./routes/ShopRoutes.js";
+
+
+import ShopProtectedRoute from './routes/ShopProtectedRoute.js';
 
 
 const App = () => {
-  const {loading, isAuthenticated} = useSelector((state) => state.user);
-  const { isShopLoading, isShopAuthenticated, shop } = useSelector((state) => state.shop)
 
 
   useEffect(() => {
@@ -50,14 +50,23 @@ const App = () => {
         <Route
           path="/shop/:id"
           element={
-            <ShopProtectedRoute isShopAuthenticated={isShopAuthenticated}>
+            <ShopProtectedRoute>
               <ShopHomePage />
             </ShopProtectedRoute>
           }
         />
 
+        <Route
+          path="/dashboard"
+          element={
+            <ShopProtectedRoute>
+              <ShopDashboardPage />
+            </ShopProtectedRoute>
+          }
+        />
+
         <Route path="/shop-create" element={<ShopCreatePage />} />
-     
+
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product/:name" element={<ProductDetailsPage />} />
         <Route path="best-selling" element={<BestSellingPage />} />
@@ -67,7 +76,7 @@ const App = () => {
         <Route
           path="/profile"
           element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <ProtectedRoute>
               <ProfilePage />
             </ProtectedRoute>
           }
@@ -78,7 +87,7 @@ const App = () => {
         <Route
           path="/checkout"
           element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
+            <ProtectedRoute>
               <CheckoutPage />
             </ProtectedRoute>
           }

@@ -16,7 +16,7 @@ export const shopReducer = createReducer(initialState, {
   LoadShopFail: (state, action) => {
     state.isShopAuthenticated = false;
     state.shopLoading = false;
-    state.error = action.playload;
+    state.error = action.payload;
   },
   clearErrors: (state) => {
     state.error = null;
