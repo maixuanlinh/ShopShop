@@ -1,0 +1,126 @@
+.
+├── README.md
+├── package-lock.json
+├── package.json
+├── projectstructure.txt
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── src
+│   ├── App.css
+│   ├── App.js
+│   ├── App.test.js
+│   ├── Assets
+│   │   └── loadingAnimation.json
+│   ├── components
+│   │   ├── Dashboard
+│   │   ├── Events
+│   │   │   ├── Countdown.jsx
+│   │   │   ├── EventCard.jsx
+│   │   │   └── Events.jsx
+│   │   ├── Layout
+│   │   │   ├── DropDown.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── Loader.jsx
+│   │   │   └── Navbar.jsx
+│   │   ├── Login
+│   │   │   └── Login.jsx
+│   │   ├── Products
+│   │   │   ├── ProductDetails.jsx
+│   │   │   └── SuggestedProduct.jsx
+│   │   ├── Profile
+│   │   │   ├── ProfileContent.jsx
+│   │   │   └── ProfileSideBar.jsx
+│   │   ├── Route
+│   │   │   ├── BestDeals
+│   │   │   │   └── BestDeals.jsx
+│   │   │   ├── Categories
+│   │   │   │   └── Categories.jsx
+│   │   │   ├── FeaturedProduct
+│   │   │   │   └── FeaturedProduct.js
+│   │   │   ├── Hero
+│   │   │   │   └── Hero.jsx
+│   │   │   ├── ProductCard
+│   │   │   │   └── ProductCard.jsx
+│   │   │   ├── ProductDetailsCard
+│   │   │   │   └── ProductDetailsCard.jsx
+│   │   │   └── Sponsored
+│   │   │       └── Sponsored.jsx
+│   │   ├── Shop
+│   │   │   ├── AllCoupons.jsx
+│   │   │   ├── AllEvents.jsx
+│   │   │   ├── AllProducts.jsx
+│   │   │   ├── CreateEvent.jsx
+│   │   │   ├── CreateProduct.jsx
+│   │   │   ├── Layout
+│   │   │   │   ├── DashboardHeader.jsx
+│   │   │   │   └── DashboardSideBar.jsx
+│   │   │   ├── ShopCreate.jsx
+│   │   │   ├── ShopInfo.jsx
+│   │   │   ├── ShopLogin.jsx
+│   │   │   └── ShopProfileData.jsx
+│   │   ├── Signup
+│   │   │   └── Signup.jsx
+│   │   ├── Wishlist
+│   │   │   └── Wishlist.jsx
+│   │   └── cart
+│   │       └── Cart.jsx
+│   ├── index.css
+│   ├── index.js
+│   ├── logo.svg
+│   ├── pages
+│   │   ├── ActivationPage.jsx
+│   │   ├── BestSellingPage.jsx
+│   │   ├── CheckoutPage.jsx
+│   │   ├── EventsPage.jsx
+│   │   ├── FAQPage.jsx
+│   │   ├── HomePage.jsx
+│   │   ├── LoginPage.jsx
+│   │   ├── OrderSuccessPage.jsx
+│   │   ├── PaymentPage.jsx
+│   │   ├── ProductDetailsPage.jsx
+│   │   ├── ProductPage.jsx
+│   │   ├── ProfilePage.jsx
+│   │   ├── SellerActivationPage.jsx
+│   │   ├── Shop
+│   │   │   ├── ShopAllCoupons.jsx
+│   │   │   ├── ShopAllProducts.jsx
+│   │   │   ├── ShopCreateEvent.jsx
+│   │   │   ├── ShopCreateProduct.jsx
+│   │   │   ├── ShopDashboardPage.jsx
+│   │   │   ├── ShopEvents.jsx
+│   │   │   └── ShopHomePage.jsx
+│   │   ├── ShopCreatePage.jsx
+│   │   ├── ShopLoginPage.jsx
+│   │   └── SignupPage.jsx
+│   ├── redux
+│   │   ├── actions
+│   │   │   ├── eventAction.js
+│   │   │   ├── productAction.js
+│   │   │   └── userActions.js
+│   │   ├── reducers
+│   │   │   ├── eventReducer.js
+│   │   │   ├── productReducer.js
+│   │   │   ├── shopReducer.js
+│   │   │   └── userReducer.js
+│   │   └── store.js
+│   ├── reportWebVitals.js
+│   ├── routes
+│   │   ├── ProtectedRoute.js
+│   │   ├── Routes.js
+│   │   ├── ShopProtectedRoute.js
+│   │   └── ShopRoutes.js
+│   ├── server.js
+│   ├── setupTests.js
+│   ├── static
+│   │   └── data.js
+│   └── styles
+│       └── styles.js
+└── tailwind.config.js
+
+32 directories, 92 files

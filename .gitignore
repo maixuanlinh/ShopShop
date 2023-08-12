@@ -1,7 +1,7 @@
 # ShopShop root .gitignore
 
 # backend dependencies
-node_modules
+/backend/node_modules
 
 # frontend dependencies
 /frontend/node_modules
