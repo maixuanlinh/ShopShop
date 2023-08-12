@@ -23,13 +23,13 @@ router.post(
         eventData.images = imageUrls;
         eventData.shop = shop;
 
-        const product = await Event.create(eventData);
+        const event = await Event.create(eventData);
 
       
 
         res.status(201).json({
           success: true,
-          product,
+          event,
         });
       }
     } catch (error) {
