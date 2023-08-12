@@ -32,7 +32,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: node-app
+          name: ShopShop
           path: ./frontend/build
 
   deploy:
@@ -46,7 +46,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: node-app
+          name: ShopShop
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
