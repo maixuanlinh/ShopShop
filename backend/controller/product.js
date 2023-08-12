@@ -1,5 +1,5 @@
 const express = require("express");
-const { isShopAuthenticated, isAuthenticated} = require("../middleware/auth");
+const { isShopAuthenticated, isAuthenticated } = require("../middleware/auth");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const router = express.Router();
 const Product = require("../model/product");
@@ -10,7 +10,8 @@ const ErrorHandler = require("../utils/ErrorHandler");
 
 // create product
 router.post(
-  "/create-product", upload.array("images"),
+  "/create-product",
+  upload.array("images"),
   catchAsyncErrors(async (req, res, next) => {
     try {
       const shopId = req.body.shopId;
@@ -55,27 +56,35 @@ router.get(
   })
 );
 
-
-
 // delete product of a shop
 router.delete(
   "/delete-shop-product/:id",
   isShopAuthenticated,
   catchAsyncErrors(async (req, res, next) => {
     try {
-       const productId = req.params.id;
+      const productId = req.params.id;
 
-       const product = await Product.findByIdAndDelete(productId);
+      const productData = await Event.findById(productId);
 
-       if (!product) {
+      productData.images.forEach((imageUrl) => {
+        const filename = imageUrl;
+        const filePath = `uploads/${filename}`;
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.log(err);
+            res.status(500).json({ message: "Error deleting file" });
+          }
+        });
+      });
+
+      const product = await Product.findByIdAndDelete(productId);
+      if (!product) {
         return next(new ErrorHandler("Product not found with this id!", 500));
-
-      
-       }
+      }
 
       res.status(201).json({
         success: true,
-        message: "Product Deleted Successfully!"
+        message: "Product Deleted Successfully!",
       });
     } catch (error) {
       return next(new ErrorHandler(error, 400));
@@ -83,7 +92,6 @@ router.delete(
   })
 );
 
-/* 
 // get all products
 router.get(
   "/get-all-products",
@@ -101,6 +109,7 @@ router.get(
   })
 );
 
+/* 
 // review for a product
 router.put(
   "/create-new-review",

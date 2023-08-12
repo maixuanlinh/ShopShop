@@ -6,6 +6,7 @@ import styles from "../../styles/styles";
 import Loader from "../Layout/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { backend_url } from "../../server"
+import { getAllProductsShop } from "../../redux/actions/productAction";
 
 
 const ShopInfo = ({ isOwner }) => {
@@ -16,7 +17,21 @@ const ShopInfo = ({ isOwner }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-
+  useEffect(() => {
+    dispatch(getAllProductsShop(id));
+    setIsLoading(true);
+    axios
+      .get(`${server}/shop/get-shop-info/${id}`)
+      .then((res) => {
+        setData(res.data.shop);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
+  }, []);
+  
 
   const logoutHandler = async () => {
     axios.get(`${server}/shop/logout`, {
