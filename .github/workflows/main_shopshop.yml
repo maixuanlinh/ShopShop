@@ -22,18 +22,16 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
-        working-directory: ./frontend
         run: |
-       
           npm install
-          CI=false npm run build --if-present
-         
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: ShopShop
-          path: ./frontend/build
+          name: node-app
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,12 +44,13 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: ShopShop
+          name: node-app
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'ShopShop'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_38A21A12136440108CF0490E8AA08CA1 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DCF99349C1D646D3A65C4CAA209FB31E }}
           package: .
