@@ -1,25 +1,15 @@
-import React from 'react'
-
-const AllProducts = () => {
-  return (
-    <div>AllProducts</div>
-  )
-}
-
-export default AllProducts
-
-/* import { Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import React, { useEffect } from "react";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllProductsShop } from "../../redux/actions/productAction";
-import { deleteProduct } from "../../redux/actions/productAction";
+import { getAllProductsShop, deleteProduct } from "../../redux/actions/productAction";
+
 import Loader from "../Layout/Loader";
 
 const AllProducts = () => {
-  const { products, productLoading } = useSelector((state) => state.products);
+  const { products, productLoading } = useSelector((state) => state.product);
   const { shop } = useSelector((state) => state.shop);
 
   const dispatch = useDispatch();
@@ -133,4 +123,3 @@ const AllProducts = () => {
 };
 
 export default AllProducts;
- */
