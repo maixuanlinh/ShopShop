@@ -13,7 +13,12 @@ import Store from "./redux/store";
 import {loadShop, loadUser} from "./redux/actions/userActions.js"
 import ProtectedRoute from './routes/ProtectedRoute.js';
 import { useSelector } from "react-redux";
-import {ShopHomePage, ShopDashboardPage, ShopCreateProduct} from "./routes/ShopRoutes.js";
+import {
+  ShopHomePage,
+  ShopDashboardPage,
+  ShopCreateProduct,
+  ShopAllProducts,
+} from "./routes/ShopRoutes.js";
 
 
 import ShopProtectedRoute from './routes/ShopProtectedRoute.js';
@@ -70,6 +75,15 @@ const App = () => {
           element={
             <ShopProtectedRoute>
               <ShopCreateProduct />
+            </ShopProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard-products"
+          element={
+            <ShopProtectedRoute>
+              <ShopAllProducts />
             </ShopProtectedRoute>
           }
         />

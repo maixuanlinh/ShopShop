@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 import { categoriesData } from "../../static/data";
 import { toast } from "react-toastify";
+import { createProduct } from "../../redux/actions/productAction";
 
 const CreateProduct = () => {
-  const { shop } = useSelector((state) => state.shop);
-
+  const { shop } = useSelector((state) => state.shop); 
+  const { productLoading, success, error } = useSelector((state) => state.product);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,7 +22,19 @@ const CreateProduct = () => {
   const [discountPrice, setDiscountPrice] = useState();
   const [stock, setStock] = useState();
 
- 
+  useEffect(() => {
+
+    console.log("error is ", error)
+    console.log("success is", success);
+    if (error) {
+        toast.error(error);
+    }
+
+    if (success) {
+        toast.success("Product created successfully!");
+        navigate("/dashboard");
+    }
+  }, [dispatch, error, success])
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
@@ -56,6 +69,8 @@ const CreateProduct = () => {
     newForm.append("discountPrice", discountPrice);
     newForm.append("stock", stock);
     newForm.append("shopId", shop._id);
+    console.log("shopid front", shop._id);
+    dispatch(createProduct(newForm));
    
   };
 
