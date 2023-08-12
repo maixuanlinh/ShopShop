@@ -18,6 +18,8 @@ import {
   ShopDashboardPage,
   ShopCreateProduct,
   ShopAllProducts,
+  ShopEvents,
+  ShopCreateEvent
 } from "./routes/ShopRoutes.js";
 
 
@@ -75,6 +77,24 @@ const App = () => {
           element={
             <ShopProtectedRoute>
               <ShopCreateProduct />
+            </ShopProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard-create-event"
+          element={
+            <ShopProtectedRoute>
+              <ShopCreateEvent />
+            </ShopProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard-events"
+          element={
+            <ShopProtectedRoute>
+              <ShopEvents />
             </ShopProtectedRoute>
           }
         />
