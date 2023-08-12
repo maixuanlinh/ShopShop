@@ -44,7 +44,7 @@ router.post("/create-shop", upload.single("file"), async(req, res, next) => {
     };
 
     const activationToken = createActivationToken(seller);
-    const activationUrl = `http://localhost:3000/shop/activation/${activationToken}`;
+    const activationUrl = `https://shopshop.azurewebsites.net/shop/activation/${activationToken}`;
 
     try {
       await sendMail({

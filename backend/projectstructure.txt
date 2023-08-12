@@ -1,0 +1,33 @@
+.
+├── app.js
+├── config
+├── controller
+│   ├── couponcode.js
+│   ├── event.js
+│   ├── product.js
+│   ├── shop.js
+│   └── user.js
+├── db
+│   └── Database.js
+├── middleware
+│   ├── auth.js
+│   ├── catchAsyncErrors.js
+│   └── error.js
+├── model
+│   ├── couponcode.js
+│   ├── event.js
+│   ├── product.js
+│   ├── shop.js
+│   └── user.js
+├── multer.js
+├── package-lock.json
+├── package.json
+├── projectstructure.txt
+├── server.js
+└── utils
+    ├── ErrorHandler.js
+    ├── jwtToken.js
+    ├── sendMail.js
+    └── shopToken.js
+
+7 directories, 24 files

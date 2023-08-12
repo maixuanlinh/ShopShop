@@ -8,10 +8,12 @@ const cors = require("cors");
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: "http://localhost:3000",
+app.use(
+  cors({
+    origin: "https://shopshop.azurewebsites.net/",
     credentials: true,
-}));
+  })
+);
 app.use("/", express.static("uploads"));
 app.use(bodyParser.urlencoded({extended: true, limit: "50mb"}));
 
