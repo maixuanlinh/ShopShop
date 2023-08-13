@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 // Use dotenv only in non-production environments
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
-    path: "./config/.env",
+    path: "config/.env",
   });
 }
 

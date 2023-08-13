@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Ecommerce app with Full Features (Advanced project)",
   "main": "server.js",
+  "engines": {
+    "node": "18x.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",

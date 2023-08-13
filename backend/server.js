@@ -11,7 +11,7 @@ process.on("uncaughtException", (err) => {
 // Load environment variables
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
-    path: "backend/config/.env",
+    path: "config/.env",
   });
 }
 
