@@ -9,12 +9,18 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cookieParser());
 
+const CORS_ORIGIN =
+  process.env.NODE_ENV === "production"
+    ? "https://shopshop.azurewebsites.net"
+    : "http://localhost:3000"; // assuming your frontend runs on port 3000 locally
+
 app.use(
   cors({
-    origin: "https://shopshop.azurewebsites.net", // Removed trailing slash
+    origin: CORS_ORIGIN,
     credentials: true,
   })
 );
+
 
 app.use("/", express.static("uploads"));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
@@ -22,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 // Use dotenv only in non-production environments
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
-    path: "config/.env",
+    path: "./config/.env",
   });
 }
 
