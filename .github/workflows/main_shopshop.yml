@@ -3,7 +3,7 @@ name: Node.js Deploy to Azure
 on:
   push:
     branches:
-      - main # or your default branch
+      - main 
 
 jobs:
   build-and-deploy:
@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '18' # use your desired Node version
+        node-version: '18' 
 
     - name: Install backend dependencies
       run: cd backend && npm install
@@ -25,12 +25,12 @@ jobs:
       run: cd frontend && npm install
 
     - name: Build React frontend
-      run: cd frontend && npm run build
+      run: cd frontend && CI=false npm run build
 
     - name: Deploy to Azure
       uses: azure/webapps-deploy@v2
       with:
-        app-name: YOUR_APP_SERVICE_NAME
+        app-name: ShopShop
         slot-name: 'production'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DCF99349C1D646D3A65C4CAA209FB31E }}
         package: .
