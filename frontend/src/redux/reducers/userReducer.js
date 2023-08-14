@@ -9,6 +9,9 @@ export const userReducer = createReducer(initialState, {
         state.loading = true;
     },
     LoadUserSuccess: (state, action) => {
+
+        console.log("Loaded user:", action.payload);
+        console.log("redux isAuthenticated:", state.isAuthenticated);
         state.isAuthenticated = true;
         state.loading = false;
         state.user = action.payload;
