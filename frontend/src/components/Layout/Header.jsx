@@ -172,7 +172,7 @@ const Header = ({ activeHeading }) => {
 
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                {isAuthenticated ? (
+                {isAuthenticated && user ? (
                   <Link to="/profile">
                     <img
                       src={`${backend_url}/${user.avatar}`}
