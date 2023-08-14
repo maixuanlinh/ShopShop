@@ -35,31 +35,31 @@ const ProductCard = ({ data }) => {
             <AiFillStar
               className="mr-2 cursor-pointer"
               size={20}
-              color="#F6BA00"
+              color="#F2CB07"
             ></AiFillStar>
 
             <AiFillStar
               className="mr-2 cursor-pointer"
               size={20}
-              color="#F6BA00"
+              color="#F2CB07"
             ></AiFillStar>
 
             <AiFillStar
               className="mr-2 cursor-pointer"
               size={20}
-              color="#F6BA00"
+              color="#F2CB07"
             ></AiFillStar>
 
             <AiFillStar
               className="mr-2 cursor-pointer"
               size={20}
-              color="#F6BA00"
+              color="#F2CB07"
             ></AiFillStar>
 
             <AiOutlineStar
               className="mr-2 cursor-pointer"
               size={20}
-              color="#F6BA00"
+              color="#F2CB07"
             ></AiOutlineStar>
           </div>
 
@@ -72,7 +72,7 @@ const ProductCard = ({ data }) => {
                 {data.price ? data.price + " $" : null}
               </h4>
             </div>
-            <span className="font-[400] text-[17px] text-[#68d284]">
+            <span className="font-[400] text-[17px] text-[#82BF26]">
               {data.total_sell} sold
             </span>
           </div>
@@ -113,12 +113,9 @@ const ProductCard = ({ data }) => {
             title="Add to cart"
           />
 
-          {
-            open ? (
-                <ProductDetailsCard open={open} setOpen={setOpen} data={data}/>
-            ) : null
-
-          }
+          {open ? (
+            <ProductDetailsCard open={open} setOpen={setOpen} data={data} />
+          ) : null}
         </div>
       </div>
     </>
