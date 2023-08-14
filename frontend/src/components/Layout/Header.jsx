@@ -44,6 +44,8 @@ const Header = ({ activeHeading }) => {
     }
   });
 
+    console.log("header authenticated", isAuthenticated);
+
   return (
     <>
       <div className={`${styles.section}`}>
@@ -172,10 +174,10 @@ const Header = ({ activeHeading }) => {
 
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                {isAuthenticated && user ? (
+                {isAuthenticated ? (
                   <Link to="/profile">
                     <img
-                      src={`${backend_url}/${user.avatar}`}
+                      src={`${backend_url}/${user?.avatar}`}
                       alt=""
                       className="w-[40px] h-[40px] rounded-full"
                     />
@@ -322,7 +324,7 @@ const Header = ({ activeHeading }) => {
                         <Link to="/profile">
                           {" "}
                           <img
-                            src={`${backend_url}/${user.avatar}`}
+                            src={`${backend_url}/${user?.avatar}`}
                             alt=""
                             className="w-[50px] h-[50px] rounded-full border-[3px] border-[#0eae88]"
                           ></img>{" "}

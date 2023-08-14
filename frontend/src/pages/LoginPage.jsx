@@ -9,6 +9,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isAuthenticated === true) {
+      console.log("login page authenticated", isAuthenticated);
       navigate("/");
     }
   }, [isAuthenticated]);
