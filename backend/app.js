@@ -21,23 +21,13 @@ app.use(
   })
 );
 
-
 app.use("/", express.static(path.join(__dirname, "../uploads")));
-
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 // Use dotenv only in non-production environments
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
     path: "./config/.env",
-  });
-}
-
-// If in production, serve frontend's build folder
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("../frontend/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
   });
 }
 
@@ -48,11 +38,20 @@ const product = require("./controller/product");
 const event = require("./controller/event");
 const coupon = require("./controller/couponcode");
 
+// Use routes BEFORE serving static files for the frontend
 app.use("/api/v2/user", user);
 app.use("/api/v2/shop", shop);
 app.use("/api/v2/product", product);
 app.use("/api/v2/event", event);
 app.use("/api/v2/coupon", coupon);
+
+// If in production, serve frontend's build folder
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../frontend/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
+  });
+}
 
 // For error handling
 app.use(ErrorHandler);
