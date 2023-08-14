@@ -152,9 +152,11 @@ router.get("/getuser", isAuthenticated, catchAsyncErrors(async (req, res, next) 
   try {
       const user = await User.findById(req.user.id);
       if (!user) {
+        console.log("No user exist");
         return next(new ErrorHandler("User doesn't exist", 400));
       }
 
+      console.log("user is logged in", user);
       res.status(200).json({
         success: true,
         user,
