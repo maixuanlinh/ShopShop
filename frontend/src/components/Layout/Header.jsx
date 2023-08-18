@@ -177,7 +177,7 @@ const Header = ({ activeHeading }) => {
                 {isAuthenticated ? (
                   <Link to="/profile">
                     <img
-                      src={`${backend_url}/${user?.avatar}`}
+                      src={user?.avatar}
                       alt=""
                       className="w-[40px] h-[40px] rounded-full"
                     />
@@ -324,7 +324,7 @@ const Header = ({ activeHeading }) => {
                         <Link to="/profile">
                           {" "}
                           <img
-                            src={`${backend_url}/${user?.avatar}`}
+                            src={user?.avatar}
                             alt=""
                             className="w-[50px] h-[50px] rounded-full border-[3px] border-[#0eae88]"
                           ></img>{" "}
