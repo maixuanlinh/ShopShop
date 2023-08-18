@@ -1,0 +1,6 @@
+accent = "#82BF26"
+primaryDark  = "#0E2F73"
+primary = "#0420BF"
+dark = "#0D0D0D"
+background = "#F2F2F2" 
+yellow = "#F2CB07"
