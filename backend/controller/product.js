@@ -8,22 +8,44 @@ const Shop = require("../model/shop");
 const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
 
+const { BlobServiceClient } = require("@azure/storage-blob");
+const backend_url = process.env.NODE_ENV === "production"
+  ? "https://shopshop.azurewebsites.net"
+  : "http://localhost:3000";
+
+const AZURE_STORAGE_CONNECTION_STRING =
+  process.env.AZURE_STORAGE_CONNECTION_STRING; 
+const blobServiceClient = BlobServiceClient.fromConnectionString(
+  AZURE_STORAGE_CONNECTION_STRING
+);
+const containerClient = blobServiceClient.getContainerClient(
+  process.env.CONTAINER_NAME
+);
+
 // create product
 router.post(
   "/create-product",
-  upload.array("images"),
   catchAsyncErrors(async (req, res, next) => {
     try {
       const shopId = req.body.shopId;
-      console.log("shop id back", req.body.shopId);
       const shop = await Shop.findById(shopId);
       if (!shop) {
         return next(new ErrorHandler("Shop Id is invalid!", 400));
       } else {
-        const files = req.files;
-        const imageUrls = files.map((file) => `${file.filename}`);
+        let images = [];
+
+        if (typeof req.body.images === "string") {
+          images.push(req.body.images);
+        } else {
+          images = req.body.images;
+        }
+      
+        const imagesLinks = [];
+      
+     
+      
         const productData = req.body;
-        productData.images = imageUrls;
+        productData.images = imagesLinks;
         productData.shop = shop;
 
         const product = await Product.create(productData);
@@ -35,6 +57,45 @@ router.post(
       }
     } catch (error) {
       return next(new ErrorHandler(error, 400));
+    }
+  })
+);
+
+router.post(
+  "/create-product",
+  upload.array("images"),
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const shopId = req.body.shopId;
+      const shop = await Shop.findById(shopId);
+      if (!shop) {
+        return next(new ErrorHandler("Shop Id is invalid!", 400));
+      } else {
+        // Save files to Azure Blob Storage
+        const imageUrls = [];
+        console.log("req files", req.files)
+        for (const file of req.files) {
+          const blobName = Date.now() + path.extname(file.originalname);
+          const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+          await blockBlobClient.upload(file.buffer, file.size);
+          imageUrls.push(blockBlobClient.url);
+        }
+
+        const productData = req.body;
+        productData.images = imageUrls;
+        productData.shop = shop;
+
+        console.log("product data image", productData.images);
+
+        const product = await Product.create(productData);
+
+        res.status(201).json({
+          success: true,
+          product,
+        });
+      }
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 400));
     }
   })
 );

@@ -18,7 +18,7 @@ const backend_url = process.env.NODE_ENV === "production"
   : "http://localhost:3000";
 
 const AZURE_STORAGE_CONNECTION_STRING =
-  process.env.AZURE_STORAGE_CONNECTION_STRING; // You can find this in the Azure portal
+  process.env.AZURE_STORAGE_CONNECTION_STRING; 
 const blobServiceClient = BlobServiceClient.fromConnectionString(
   AZURE_STORAGE_CONNECTION_STRING
 );
@@ -192,6 +192,7 @@ router.get(
     }
   })
 );
+
 
 //log out user
 router.get(
