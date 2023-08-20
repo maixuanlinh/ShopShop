@@ -70,6 +70,7 @@ const CreateProduct = () => {
     newForm.append("stock", stock);
     newForm.append("shopId", shop._id);
     console.log("shopid front", shop._id);
+
     dispatch(createProduct(newForm));
    
   };
