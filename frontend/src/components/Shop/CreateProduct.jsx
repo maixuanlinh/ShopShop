@@ -14,6 +14,7 @@ const CreateProduct = () => {
   const dispatch = useDispatch();
 
   const [images, setImages] = useState([]);
+  const [imagesToSubmit, setImagesToSubmit] = useState([]); // [the images that will be submitted to the backend]
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -39,6 +40,8 @@ const CreateProduct = () => {
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
 
+    setImagesToSubmit(files);
+
     setImages([]);
 
     files.forEach((file) => {
@@ -57,8 +60,8 @@ const CreateProduct = () => {
     e.preventDefault();
 
     const newForm = new FormData();
-    console.log("image currently is ", images);
-    images.forEach((image) => {
+    console.log("image currently is ", imagesToSubmit);
+    imagesToSubmit.forEach((image) => {
       newForm.append("images", image);
     });
     newForm.append("name", name);
